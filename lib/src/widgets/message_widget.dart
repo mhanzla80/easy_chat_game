@@ -6,14 +6,16 @@ class MessageWidget extends StatelessWidget {
   final bool isSender;
   final ChatLevel level;
   final String message;
+  final bool isDarkMode;
 
-  const MessageWidget(this.isSender, this.level, this.message, {super.key});
+  const MessageWidget(this.isSender, this.level, this.message, this.isDarkMode,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> body = [
       _buildChatAvatar(),
-      _buildMessageBody(context),
+      _buildMessageBody(context, isDarkMode),
     ];
 
     return Padding(
@@ -29,7 +31,7 @@ class MessageWidget extends StatelessWidget {
   String _truncateParentheses(String str) =>
       str.replaceAll(RegExp(r"\(.+?\)"), '');
 
-  Container _buildMessageBody(BuildContext context) {
+  Container _buildMessageBody(BuildContext context, bool isDarkMode) {
     final truncatedMessage = _truncateParentheses(message);
     final theme = Theme.of(context);
     return Container(
@@ -55,7 +57,9 @@ class MessageWidget extends StatelessWidget {
       ),
       child: Text(
         truncatedMessage,
-        style: const TextStyle(color: Colors.white, fontSize: 16),
+        style: TextStyle(
+            color: isSender && isDarkMode ? Colors.white : Colors.black,
+            fontSize: 16),
       ),
     );
   }

@@ -20,9 +20,6 @@ class ChatHeaderWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: BackButton(onPressed: () => _onBackPressed(context)),
-      centerTitle: false,
-      titleSpacing: 0,
-      elevation: 5,
       title: Row(
         children: [
           ChatAvatar(imgSrc),
@@ -40,7 +37,7 @@ class ChatHeaderWidget extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  _onBackPressed(BuildContext context) {
+  void _onBackPressed(BuildContext context) {
     // MyAudioPlayer.instance.playButtonTap();
 
     Navigator.maybePop(context);

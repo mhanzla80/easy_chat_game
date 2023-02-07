@@ -10,6 +10,8 @@ class ChatOptionsPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomSafeArea = SizeConfig.safeAreaPaddingBottom / 2;
+    final brightness = Theme.of(context).brightness;
+    bool isDarkMode = brightness == Brightness.dark;
 
     return Container(
       color: Theme.of(context).secondaryHeaderColor,
@@ -18,12 +20,12 @@ class ChatOptionsPanel extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(
             left: 16, right: 16, top: 10, bottom: 50 + 4 + bottomSafeArea),
-        child: _buildOptions(context),
+        child: _buildOptions(context, isDarkMode),
       ),
     );
   }
 
-  Widget _buildOptions(BuildContext context) {
+  Widget _buildOptions(BuildContext context, bool isDarkMode) {
     return Consumer<ChatProvider>(
       builder: (BuildContext context, model, Widget? child) {
         final options = model.getNextOptions() ?? [];
@@ -31,7 +33,7 @@ class ChatOptionsPanel extends StatelessWidget {
 
         final List<ElevatedButton> optionButtonList = [];
         for (int i = 0; i < options.length; i++) {
-          final option = _buildOptionButton(context, options[i]);
+          final option = _buildOptionButton(context, options[i], isDarkMode);
           optionButtonList.add(option);
         }
 
@@ -43,7 +45,8 @@ class ChatOptionsPanel extends StatelessWidget {
     );
   }
 
-  ElevatedButton _buildOptionButton(BuildContext context, String text) {
+  ElevatedButton _buildOptionButton(
+      BuildContext context, String text, bool isDarkMode) {
     Color color;
     if (ChatLevel.isLie(text)) {
       color = Colors.red;
@@ -62,10 +65,9 @@ class ChatOptionsPanel extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: Theme.of(context)
-            .textTheme
-            .titleLarge!
-            .copyWith(fontWeight: FontWeight.bold),
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontWeight: FontWeight.bold,
+            color: isDarkMode ? Colors.black : Colors.white),
       ),
     );
   }
