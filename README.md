@@ -50,7 +50,6 @@ class ChatData {
     return [
       level1(),
       level2(),
-      level3(),
     ];
   }
 
@@ -103,94 +102,6 @@ class ChatData {
       failureMessages: [
         'Okay enough you are expelled',
         'i don\'t really believe you! Meet me in my office'
-      ],
-    );
-  }
-
-  static ChatLevel level2() {
-    Map<String, List<String>> chatList = {};
-
-    chatList[ChatLevel.userKey] = ['OMG!', 'Hey Teacher'];
-    chatList['OMG!'] = ['What?'];
-    chatList['Hey Teacher'] = ['What?'];
-    chatList['What?'] = ['i had an accident', 'i got expelled from school'];
-    chatList['i had an accident'] = ['What happened?'];
-    chatList['What happened?'] = ['i burned my eyebrows', 'i crashed your car'];
-    chatList['i burned my eyebrows'] = ['How? 😟'];
-
-    chatList['How? 😟'] = ['During my fireshow', 'with flamethrower'];
-
-    chatList['During my fireshow'] = ['You are Kidding me!!'];
-    chatList['You are Kidding me!!'] = ['HAHA I pranked you'];
-    chatList['with flamethrower'] = ['OMG! WHAT Now!?'];
-    chatList['OMG! WHAT Now!?'] = ['Pranked'];
-    chatList['i crashed your car'] = ['No you did not'];
-    chatList['No you did not'] = ['How do you know', 'yes i did'];
-    chatList['How do you know'] = ['Because i am sitting in it now'];
-    chatList['yes i did'] = ['Because i am sitting in it now'];
-    chatList['i got expelled from school'] = ['How?'];
-    chatList['How?'] = ['I escaped from there', 'i beat up another teacher'];
-    chatList['I escaped from there'] = ['Why?'];
-    chatList['i beat up another teacher'] = ['Why? 😡'];
-    chatList['Why?'] = ['He was rude', 'He gave me F'];
-    chatList['Why? 😡'] = ['I hate it there', 'I was so bored'];
-    chatList['He was rude'] = ['come to my office Now! I am so angry at you!!'];
-    chatList['He gave me F'] = [
-      'come to my office Now! I am so angry at you!!'
-    ];
-    chatList['I hate it there'] = [
-      'come to my office Now! I am so angry at you!!'
-    ];
-    chatList['I was so bored'] = [
-      'come to my office Now! I am so angry at you!!'
-    ];
-    chatList['come to my office Now! I am so angry at you!!'] = [
-      'hehehe PRANKED😂'
-    ];
-    chatList['hehehe PRANKED😂'] = ['Thank GOD'];
-    return ChatLevel(
-      levelName: 'Prank Teacher!',
-      botName: 'Teacher',
-      botImg: 'assets/kids/kid1.png',
-      userImg: 'assets/kids/kid7.png',
-      chatList: chatList,
-      successMessages: ['HAHA I pranked you', 'Pranked', 'Thank GOD'],
-      failureMessages: [
-        'Because i am sitting in it now',
-      ],
-    );
-  }
-
-  static ChatLevel level3() {
-    Map<String, List<String>> chatList = {};
-
-    chatList[ChatLevel.userKey] = ['Hello Teacher!'];
-    chatList['Hello Teacher!'] = ['What do you want?'];
-    chatList['What do you want?'] = ['Nothing', 'Go out with you 😊😘'];
-    chatList['Nothing'] = ['Leave me alone'];
-    chatList['Go out with you 😊😘'] = ['really'];
-    chatList['really'] = ['Yes, you seem really cool', 'no lol 😂'];
-    chatList['no lol 😂'] = ['son of a biscuit!..'];
-    chatList['Yes, you seem really cool'] = ['you are also kinda cute'];
-    chatList['you are also kinda cute'] = [
-      'Will you marry me? 😍',
-      'Wanna hang out?'
-    ];
-    chatList['Will you marry me? 😍'] = [
-      'No, You are my student. Are you crazy?'
-    ];
-    chatList['Wanna hang out?'] = ['yes!'];
-    return ChatLevel(
-      levelName: 'Ask her out',
-      botName: 'Pretty Teacher',
-      botImg: 'assets/kids/kid6.png',
-      userImg: 'assets/kids/kid4.png',
-      chatList: chatList,
-      successMessages: ['yes!'],
-      failureMessages: [
-        'Leave me alone',
-        'No, You are my student. Are you crazy?',
-        'son of a biscuit!..'
       ],
     );
   }
