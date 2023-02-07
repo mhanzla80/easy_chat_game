@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:confetti/confetti.dart';
+import 'package:easy_chat_game/src/easy_chat_game_controller.dart';
+import 'package:easy_chat_game/src/models/enums.dart';
 import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/size_config.dart';
 import 'package:easy_chat_game/src/widgets/my_elevated_button.dart';
@@ -19,6 +21,11 @@ class LevelEndDialog extends StatefulWidget {
   State<LevelEndDialog> createState() => _LevelEndDialogState();
 
   static Future<void> show(BuildContext context, bool isSuccessful) {
+    final controller = EasyChatGameController.of(context);
+    if (controller.onTapEvent != null) {
+      controller.onTapEvent!.call(context, ChatGameEventAction.levelEnd);
+    }
+
     if (isSuccessful) {
       MyAudioPlayer.instance.playApplause();
     } else {
@@ -112,14 +119,6 @@ class _LevelEndDialogState extends State<LevelEndDialog> {
 
   Future _showBottomButton() async {
     await Future.delayed(const Duration(seconds: 1));
-
-    // if (AdManager.instance.showInterstitial()) {
-    //   await Future.delayed(const Duration(seconds: 1));
-    // } else {
-    //   EasyAds.instance.loadAd();
-    // }
-
-    return;
   }
 
   Widget _buildBottomButton() {

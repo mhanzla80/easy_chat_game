@@ -1,4 +1,6 @@
+import 'package:easy_chat_game/src/easy_chat_game_controller.dart';
 import 'package:easy_chat_game/src/models/chat_level.dart';
+import 'package:easy_chat_game/src/models/enums.dart';
 import 'package:easy_chat_game/src/widgets/chat_app_bar.dart';
 import 'package:easy_chat_game/src/widgets/chat_list_widget.dart';
 import 'package:easy_chat_game/src/widgets/chat_options_panel.dart';
@@ -26,6 +28,7 @@ class ChatScreen extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context, ChatLevel level) {
+    final controller = EasyChatGameController.of(context);
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -36,6 +39,14 @@ class ChatScreen extends StatelessWidget {
             const ChatOptionsPanel(),
           ],
         ),
+        if (controller.placementBuilder != null)
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: controller.placementBuilder!
+                  .call(context, ChatGamePlacement.optionPanel),
+            ),
+          ),
         const ControlLevelTitlePanel(),
       ],
     );
