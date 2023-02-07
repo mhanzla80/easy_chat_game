@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:confetti/confetti.dart';
+import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/size_config.dart';
 import 'package:easy_chat_game/src/widgets/my_elevated_button.dart';
 import 'package:flutter/foundation.dart';
@@ -19,10 +20,10 @@ class LevelEndDialog extends StatefulWidget {
 
   static Future<void> show(BuildContext context, bool isSuccessful) {
     if (isSuccessful) {
-      // MyAudioPlayer.instance.playApplause();
+      MyAudioPlayer.instance.playApplause();
     } else {
+      MyAudioPlayer.instance.playLevelFailed();
       HapticFeedback.vibrate();
-      // MyAudioPlayer.instance.playLevelFailed();
     }
 
     Dialog dialog = Dialog(
@@ -132,7 +133,7 @@ class _LevelEndDialogState extends State<LevelEndDialog> {
         return MyRaisedButton(
           buttonTitle: widget.isSuccessful ? 'Next Level' : 'Try Again',
           onTap: () {
-            // MyAudioPlayer.instance.playButtonTap();
+            MyAudioPlayer.instance.playButtonTap();
             Navigator.pop(context);
           },
           color: widget.isSuccessful ? Colors.green : Colors.redAccent,

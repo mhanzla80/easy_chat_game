@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:easy_chat_game/src/models/chat_level.dart';
+import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/prefs.dart';
 import 'package:easy_chat_game/src/widgets/level_complete_dialog.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class ChatProvider extends ChangeNotifier {
     if (level.willSenderInitiateChat) {
       final message = level.getSenderMessage;
       if (message != null) {
-        // MyAudioPlayer.instance.playMessageReceived();
+        MyAudioPlayer.instance.playMessageReceived();
         messages.add(message);
       }
     }
@@ -36,7 +37,7 @@ class ChatProvider extends ChangeNotifier {
   }
 
   void onOptionSelected(BuildContext context, String selectedOption) {
-    // MyAudioPlayer.instance.playMessageSent();
+    MyAudioPlayer.instance.playMessageSent();
 
     // add selected option into message panel
     messages.add(selectedOption);
@@ -69,7 +70,7 @@ class ChatProvider extends ChangeNotifier {
         notifyListeners();
 
         HapticFeedback.heavyImpact();
-        // MyAudioPlayer.instance.playMessageReceived();
+        MyAudioPlayer.instance.playMessageReceived();
       });
     }
   }

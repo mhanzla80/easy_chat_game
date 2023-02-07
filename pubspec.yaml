@@ -15,6 +15,7 @@ dependencies:
   flutter_spinkit: ^5.1.0
   shared_preferences: ^2.0.17
   confetti: ^0.7.0
+  audioplayers: ^0.20.1
 
 dev_dependencies:
   flutter_test:
