@@ -17,6 +17,7 @@ dependencies:
   shared_preferences: ^2.0.17
   confetti: ^0.7.0
   audioplayers: ^0.20.1
+  collection: ^1.17.0
 
 dev_dependencies:
   flutter_test:
