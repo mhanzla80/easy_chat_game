@@ -1,3 +1,5 @@
+import 'package:easy_chat_game/easy_chat_game.dart';
+import 'package:example/model/chat_model_data.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,18 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
+      body: EasyChatGameApp(
+        title: 'Teacher Chat',
+        levels: ChatData.allLevels(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
