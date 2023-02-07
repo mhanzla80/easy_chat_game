@@ -7,8 +7,6 @@ class MyAudioPlayer {
   MyAudioPlayer._();
 
   final AudioCache _audioCache = AudioCache(prefix: 'assets/audio/');
-  AudioPlayer? _audioPlayer;
-  AudioPlayer? _scratchingPlayer;
 
   Future<void> init() => _audioCache.loadAll([
         'applause.mp3',
