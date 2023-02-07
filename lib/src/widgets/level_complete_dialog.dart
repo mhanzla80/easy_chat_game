@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:easy_chat_game/src/utilities/size_config.dart';
 import 'package:easy_chat_game/src/widgets/my_elevated_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -39,10 +40,11 @@ class LevelEndDialog extends StatefulWidget {
 class _LevelEndDialogState extends State<LevelEndDialog> {
   final confettiController =
       ConfettiController(duration: const Duration(seconds: 2));
+
   @override
   void initState() {
     super.initState();
-    if (widget.isSuccessful) {
+    if (widget.isSuccessful && !kDebugMode) {
       SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
         confettiController.play();
       });

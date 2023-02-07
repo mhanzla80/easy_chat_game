@@ -2,6 +2,7 @@ import 'package:easy_chat_game/src/models/chat_level.dart';
 import 'package:easy_chat_game/src/utilities/size_config.dart';
 import 'package:easy_chat_game/src/widgets/chat_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class ChatOptionsPanel extends StatelessWidget {
@@ -72,6 +73,8 @@ class ChatOptionsPanel extends StatelessWidget {
     );
   }
 
-  void _onClickOption(BuildContext context, String text) =>
-      context.read<ChatProvider>().onOptionSelected(context, text);
+  void _onClickOption(BuildContext context, String text) {
+    HapticFeedback.mediumImpact();
+    context.read<ChatProvider>().onOptionSelected(context, text);
+  }
 }

@@ -29,10 +29,9 @@ class EasyChatGameApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Prefs.instance.init();
     SizeConfig().init(context);
 
-    return EasyChatGameController(
+    final child = EasyChatGameController(
       title: title,
       placementBuilder: placementBuilder,
       onTapEvent: onTapEvent,
@@ -53,6 +52,17 @@ class EasyChatGameApp extends StatelessWidget {
           return null;
         },
       ),
+    );
+
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return child;
+        }
+
+        return const Center(child: CircularProgressIndicator.adaptive());
+      },
+      future: Prefs.instance.init(),
     );
   }
 

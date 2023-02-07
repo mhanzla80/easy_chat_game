@@ -18,6 +18,7 @@ class ChatHeaderWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AppBar(
       leading: BackButton(onPressed: () => _onBackPressed(context)),
       title: Row(
@@ -27,9 +28,11 @@ class ChatHeaderWidget extends StatelessWidget implements PreferredSizeWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: Theme.of(context).textTheme.titleLarge),
+              Text(title, style: theme.appBarTheme.titleTextStyle),
               const VerticalSpacing(of: 3),
-              Text('Active Now', style: Theme.of(context).textTheme.bodySmall),
+              Text('Active Now',
+                  style:
+                      theme.textTheme.bodySmall!.copyWith(color: Colors.white)),
             ],
           ),
         ],

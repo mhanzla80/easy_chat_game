@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:easy_chat_game/src/models/chat_level.dart';
 import 'package:easy_chat_game/src/utilities/prefs.dart';
+import 'package:easy_chat_game/src/widgets/level_complete_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -94,7 +95,7 @@ class ChatProvider extends ChangeNotifier {
 
   void _showEndDialog(BuildContext context, bool isSuccess) async {
     await Future.delayed(const Duration(seconds: 2));
-    // if (context.mounted) await LevelEndDialog.show(context, isSuccess);
+    if (context.mounted) await LevelEndDialog.show(context, isSuccess);
     if (context.mounted) Navigator.of(context).pop(isSuccess);
   }
 }
