@@ -1,6 +1,8 @@
 import 'package:easy_chat_game/src/chat_screen.dart';
 import 'package:easy_chat_game/src/easy_chat_game_controller.dart';
 import 'package:easy_chat_game/src/models/chat_level.dart';
+import 'package:easy_chat_game/src/models/enums.dart';
+import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -153,11 +155,16 @@ class _ChatLevelScreenState extends State<ChatLevelScreen> {
   }
 
   void _onTapLevel(List<ChatLevel> levels) async {
+    final controller = EasyChatGameController.of(context);
+    if (controller.onTapEvent != null) {
+      controller.onTapEvent!.call(context, ChatGameEventAction.levelTap);
+    }
+
     final completedLevelCount = Prefs.instance.getCompletedLevelCount();
 
     if (completedLevelCount >= levels.length) return;
 
-    // MyAudioPlayer.instance.playButtonTap();
+    MyAudioPlayer.instance.playButtonTap();
 
     final level = levels[completedLevelCount];
     if (context.mounted) {

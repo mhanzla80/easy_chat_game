@@ -2,8 +2,8 @@ import 'package:easy_chat_game/src/models/chat_level.dart';
 import 'package:easy_chat_game/src/models/enums.dart';
 import 'package:flutter/material.dart';
 
-typedef PlacementBuilder = Widget Function(BuildContext, PrankCallPlacement);
-typedef EventActionCallback = void Function(BuildContext, PrankCallEventAction);
+typedef PlacementBuilder = Widget Function(BuildContext, ChatGamePlacement);
+typedef EventActionCallback = void Function(BuildContext, ChatGameEventAction);
 
 class EasyChatGameController extends InheritedWidget {
   const EasyChatGameController({

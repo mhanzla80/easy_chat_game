@@ -1,8 +1,3 @@
-enum PrankCallPlacement { callSettingsBottom }
+enum ChatGamePlacement { optionPanel }
 
-enum PrankCallEventAction {
-  callAccept,
-  callDecline,
-  callEnd,
-  callScreenEvent,
-}
+enum ChatGameEventAction { levelEnd, levelTap, optionTap }

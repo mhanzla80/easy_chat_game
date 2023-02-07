@@ -1,3 +1,4 @@
+import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/size_config.dart';
 import 'package:easy_chat_game/src/widgets/chat_avatar.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class ChatHeaderWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
   void _onBackPressed(BuildContext context) {
-    // MyAudioPlayer.instance.playButtonTap();
+    MyAudioPlayer.instance.playButtonTap();
 
     Navigator.maybePop(context);
   }
