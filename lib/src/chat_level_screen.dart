@@ -21,11 +21,21 @@ class _ChatLevelScreenState extends State<ChatLevelScreen> {
   Widget build(BuildContext context) {
     final levels = EasyChatGameController.of(context).levels;
     return Scaffold(
-      appBar: AppBar(title: const Text("Chat Stories")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: _buildLevels(levels),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 22, top: 40, bottom: 20),
+                child: Text('Chat Stories',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+              ),
+              _buildLevels(levels),
+            ],
+          ),
         ),
       ),
     );
