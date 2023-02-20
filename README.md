@@ -6,7 +6,7 @@
 [![Code size](https://img.shields.io/github/languages/code-size/nooralibutt/easy_chat_game?logo=github&logoColor=white)](https://github.com/nooralibutt/easy_chat_game)
 [![License](https://img.shields.io/github/license/nooralibutt/easy_chat_game?logo=open-source-initiative&logoColor=green)](https://github.com/nooralibutt/easy_chat_game/blob/master/LICENSE)
 
-**Show some 💙, 👍 the package & ⭐️ the repo to support the project**
+To implement a scripted chat game for fun
 
 ## Features
 - Support chat game for fun

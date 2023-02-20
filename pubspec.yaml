@@ -1,6 +1,6 @@
 name: easy_chat_game
-description: A new Flutter project.
-version: 1.0.0
+description: To implement a scripted chat game for fun
+version: 1.0.1
 homepage: https://github.com/nooralibutt/easy_chat_game
 repository: https://github.com/nooralibutt/easy_chat_game
 
@@ -24,10 +24,6 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.1
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
 
   assets:
