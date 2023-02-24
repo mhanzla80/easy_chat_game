@@ -32,15 +32,28 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: EasyChatGameApp(
-        title: 'Teacher Chat',
-        levels: ChatData.allLevels(),
-      ),
+      body: getMainWidget(ChatData.allLevels()),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: onLaunch,
+        tooltip: 'Launch',
+        child: const Icon(Icons.launch),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  void onLaunch() async {
+    final result = await Navigator.of(context).push(
+      MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (_) => getMainWidget([ChatData.level1()])),
+    );
+    if (result == false) onLaunch();
+  }
+
+  Widget getMainWidget(List<ChatLevel> levels) {
+    return EasyChatGameApp(
+      title: 'Teacher Chat',
+      levels: levels,
     );
   }
 }

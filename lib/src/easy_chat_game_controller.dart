@@ -13,7 +13,7 @@ class EasyChatGameController extends InheritedWidget {
     required super.child,
     this.placementBuilder,
     this.onTapEvent,
-    required this.context,
+    required this.parentContext,
   });
 
   /// This is the main title text
@@ -28,7 +28,7 @@ class EasyChatGameController extends InheritedWidget {
   /// [onTapEvent] will be call on every event preformed by the user
   final EventActionCallback? onTapEvent;
 
-  final BuildContext context;
+  final BuildContext parentContext;
 
   static EasyChatGameController? maybeOf(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<EasyChatGameController>();

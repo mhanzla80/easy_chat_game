@@ -4,6 +4,7 @@ import 'package:easy_chat_game/src/models/chat_level.dart';
 import 'package:easy_chat_game/src/models/enums.dart';
 import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/prefs.dart';
+import 'package:easy_chat_game/src/widgets/maybe_close_button.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -21,20 +22,33 @@ class _ChatLevelScreenState extends State<ChatLevelScreen> {
   Widget build(BuildContext context) {
     final levels = EasyChatGameController.of(context).levels;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 22, top: 40, bottom: 20),
-                child: Text('Chat Stories',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
-              ),
-              _buildLevels(levels),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Row(
+                    children: [
+                      MaybeCloseButton(
+                          EasyChatGameController.of(context).parentContext),
+                      Text(
+                        'Chat Stories',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                _buildLevels(levels),
+              ],
+            ),
           ),
         ),
       ),

@@ -133,7 +133,7 @@ class _LevelEndDialogState extends State<LevelEndDialog> {
           buttonTitle: widget.isSuccessful ? 'Next Level' : 'Try Again',
           onTap: () {
             MyAudioPlayer.instance.playButtonTap();
-            Navigator.pop(context);
+            Navigator.maybePop(context);
           },
           color: widget.isSuccessful ? Colors.green : Colors.redAccent,
         );
