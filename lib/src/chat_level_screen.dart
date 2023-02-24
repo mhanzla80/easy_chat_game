@@ -106,8 +106,8 @@ class _ChatLevelScreenState extends State<ChatLevelScreen> {
     if (i < completedLevelCount) {
       innerWidget = const Icon(Icons.check);
     } else if (i == completedLevelCount) {
-      innerWidget = MirrorAnimation(
-        builder: (BuildContext context, Widget? animChild, double value) {
+      innerWidget = MirrorAnimationBuilder(
+        builder: (context, value, animChild) {
           return Transform.scale(scale: value, child: animChild);
         },
         duration: const Duration(seconds: 1),

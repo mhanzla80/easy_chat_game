@@ -76,10 +76,10 @@ class _LevelEndDialogState extends State<LevelEndDialog> {
               clipBehavior: Clip.none,
               fit: StackFit.expand,
               children: [
-                LoopAnimation<double>(
+                LoopAnimationBuilder<double>(
                   duration: const Duration(seconds: 3),
                   tween: Tween(begin: 0.0, end: 1.0),
-                  builder: (_, animChild, value) {
+                  builder: (_, value, animChild) {
                     return Transform.rotate(
                       angle: value * 2 * pi,
                       child: animChild,
