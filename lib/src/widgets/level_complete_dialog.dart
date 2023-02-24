@@ -86,7 +86,7 @@ class _LevelEndDialogState extends State<LevelEndDialog> {
                     );
                   },
                   child: Image.asset(
-                    'assets/chat/level_burst.png',
+                    'lib/assets/chat/level_burst.png',
                     fit: BoxFit.contain,
                     alignment: Alignment.center,
                   ),
@@ -94,7 +94,7 @@ class _LevelEndDialogState extends State<LevelEndDialog> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Image.asset(
-                    'assets/chat/level_${widget.isSuccessful ? 'completed' : 'failed'}.png',
+                    'lib/assets/chat/level_${widget.isSuccessful ? 'completed' : 'failed'}.png',
                     fit: BoxFit.contain,
                     alignment: Alignment.center,
                   ),

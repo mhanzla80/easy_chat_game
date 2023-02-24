@@ -1,6 +1,6 @@
 name: easy_chat_game
 description: To implement a scripted chat game for fun
-version: 1.0.1
+version: 1.0.3
 homepage: https://github.com/nooralibutt/easy_chat_game
 repository: https://github.com/nooralibutt/easy_chat_game
 
@@ -27,5 +27,7 @@ dev_dependencies:
 flutter:
 
   assets:
-    - assets/
-    - assets/chat/
+  - lib/assets/
+  - lib/assets/audio/
+  - lib/assets/audio/applause.mp3
+  - lib/assets/chat/

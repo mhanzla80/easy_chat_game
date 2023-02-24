@@ -2,6 +2,7 @@ import 'package:easy_chat_game/src/chat_level_screen.dart';
 import 'package:easy_chat_game/src/chat_screen.dart';
 import 'package:easy_chat_game/src/easy_chat_game_controller.dart';
 import 'package:easy_chat_game/src/models/chat_level.dart';
+import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/prefs.dart';
 import 'package:easy_chat_game/src/utilities/size_config.dart';
 import 'package:flutter/material.dart';
@@ -62,8 +63,13 @@ class EasyChatGameApp extends StatelessWidget {
 
         return const Center(child: CircularProgressIndicator.adaptive());
       },
-      future: Prefs.instance.init(),
+      future: _initialize(),
     );
+  }
+
+  Future<void> _initialize() async {
+    await MyAudioPlayer.instance.init();
+    await Prefs.instance.init();
   }
 
   Route _generatePage(child) => MaterialPageRoute(builder: (_) => child);
