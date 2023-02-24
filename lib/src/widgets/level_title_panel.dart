@@ -17,8 +17,7 @@ class ControlLevelTitlePanel extends StatelessWidget {
         if (introPopupState == IntroPopupState.shouldDisplay) {
           return const LevelTitlePanel();
         } else if (introPopupState == IntroPopupState.shouldHide) {
-          return const LevelTitlePanel(
-              control: CustomAnimationControl.playReverse);
+          return const LevelTitlePanel(control: Control.playReverse);
         }
         return const SizedBox();
       },
@@ -28,10 +27,9 @@ class ControlLevelTitlePanel extends StatelessWidget {
 }
 
 class LevelTitlePanel extends StatelessWidget {
-  final CustomAnimationControl control;
+  final Control control;
 
-  const LevelTitlePanel(
-      {super.key, this.control = CustomAnimationControl.play});
+  const LevelTitlePanel({super.key, this.control = Control.play});
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +43,10 @@ class LevelTitlePanel extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _buildContainerLine(context, delay, duration, true),
-        CustomAnimation<double>(
+        CustomAnimationBuilder<double>(
           control: control,
           tween: Tween(begin: 0.0, end: 1.0),
-          builder: (context, child, value) {
+          builder: (context, value, child) {
             return Opacity(
               opacity: value,
               child: child,
@@ -80,10 +78,10 @@ class LevelTitlePanel extends StatelessWidget {
       height: 20,
       child: Stack(
         children: [
-          CustomAnimation<double>(
+          CustomAnimationBuilder<double>(
             control: control,
             tween: Tween(begin: 1.0, end: 0.0),
-            builder: (context, child, value) {
+            builder: (context, value, child) {
               return Positioned(
                 right: multiplier * SizeConfig.screenWidth * value,
                 child: child!,

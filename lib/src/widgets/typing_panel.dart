@@ -16,10 +16,10 @@ class TypingPanel extends StatelessWidget {
       builder: (BuildContext context, isTyping, Widget? child) {
         return Visibility(
           visible: isTyping,
-          child: PlayAnimation(
+          child: PlayAnimationBuilder(
             duration: const Duration(milliseconds: 200),
             tween: Tween(begin: 0.0, end: 1.0),
-            builder: (_, animChild, double value) {
+            builder: (_, value, animChild) {
               return Opacity(
                 opacity: value,
                 child: animChild,
