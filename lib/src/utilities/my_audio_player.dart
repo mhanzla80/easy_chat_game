@@ -1,28 +1,63 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 
 class MyAudioPlayer {
   // Singleton instance code
   static final MyAudioPlayer _instance = MyAudioPlayer._();
   static MyAudioPlayer get instance => _instance;
   MyAudioPlayer._();
+  static const assetPrefix = 'lib/assets/audio';
+  bool isInitialized = false;
 
-  final AudioCache _audioCache = AudioCache(prefix: 'lib/assets/audio/');
+  final _sentPlayer = AudioPlayer();
+  final _receivePlayer = AudioPlayer();
+  final _applausePlayer = AudioPlayer();
+  final _failedPlayer = AudioPlayer();
+  final _successPlayer = AudioPlayer();
+  final _tapPlayer = AudioPlayer();
 
-  Future<void> init() => _audioCache.loadAll([
-        'applause.mp3',
-        'receive.mp3',
-        'sent.mp3',
-        'failed.mp3',
-        'tap.mp3',
-        'success.wav',
-      ]);
+  Future<void> init() async {
+    if (isInitialized) return Future.value();
 
-  Future<AudioPlayer> playMessageSent() => _audioCache.play('sent.mp3');
+    _sentPlayer.setAudioSource(AudioSource.asset('$assetPrefix/sent.mp3'));
+    _receivePlayer
+        .setAudioSource(AudioSource.asset('$assetPrefix/receive.mp3'));
+    _applausePlayer
+        .setAudioSource(AudioSource.asset('$assetPrefix/applause.mp3'));
+    _failedPlayer.setAudioSource(AudioSource.asset('$assetPrefix/failed.mp3'));
+    _successPlayer
+        .setAudioSource(AudioSource.asset('$assetPrefix/success.wav'));
+    await _tapPlayer.setAudioSource(AudioSource.asset('$assetPrefix/tap.mp3'));
+    await Future.delayed(const Duration(seconds: 2));
+    isInitialized = true;
+  }
 
-  Future<AudioPlayer> playMessageReceived() => _audioCache.play('receive.mp3');
+  void playMessageSent() {
+    _sentPlayer.play();
+    _sentPlayer.load();
+  }
 
-  Future<AudioPlayer> playApplause() => _audioCache.play('applause.mp3');
-  Future<AudioPlayer> playLevelFailed() => _audioCache.play('failed.mp3');
-  Future<AudioPlayer> playSuccess() => _audioCache.play('success.wav');
-  Future<AudioPlayer> playButtonTap() => _audioCache.play('tap.mp3');
+  void playMessageReceived() {
+    _receivePlayer.play();
+    _receivePlayer.load();
+  }
+
+  void playApplause() {
+    _applausePlayer.play();
+    _applausePlayer.load();
+  }
+
+  void playLevelFailed() {
+    _failedPlayer.play();
+    _failedPlayer.load();
+  }
+
+  void playSuccess() {
+    _successPlayer.play();
+    _successPlayer.load();
+  }
+
+  void playButtonTap() {
+    _tapPlayer.play();
+    _tapPlayer.load();
+  }
 }
