@@ -34,7 +34,7 @@ class _ChatLevelScreenState extends State<ChatLevelScreen> {
                   child: Row(
                     children: [
                       MaybeCloseButton(
-                          EasyChatGameController.of(context).context),
+                          EasyChatGameController.of(context).parentContext),
                       Text(
                         'Chat Stories',
                         textAlign: TextAlign.center,

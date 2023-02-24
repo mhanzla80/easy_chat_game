@@ -36,19 +36,23 @@ class EasyChatGameApp extends StatelessWidget {
       title: title,
       placementBuilder: placementBuilder,
       onTapEvent: onTapEvent,
-      context: context,
+      parentContext: context,
       levels: levels,
 
       /// Package has its own navigation
       child: Navigator(
-        initialRoute: ChatLevelScreen.routeName,
+        initialRoute: levels.length == 1
+            ? ChatScreen.routeName
+            : ChatLevelScreen.routeName,
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case ChatLevelScreen.routeName:
               return _generatePage(const ChatLevelScreen());
             case ChatScreen.routeName:
-              return _generatePage(
-                  ChatScreen(level: settings.arguments as ChatLevel));
+              return _generatePage(ChatScreen(
+                  level: levels.length == 1
+                      ? levels.first
+                      : settings.arguments as ChatLevel));
           }
           return null;
         },
@@ -73,32 +77,4 @@ class EasyChatGameApp extends StatelessWidget {
   }
 
   Route _generatePage(child) => MaterialPageRoute(builder: (_) => child);
-
-  static void launchApp(
-    BuildContext context, {
-    /// This is the main title text
-    required final String title,
-
-    /// Add All levels here
-    required final List<ChatLevel> levels,
-
-    /// [placementBuilder] is used to build your custom widget at specific places
-    final PlacementBuilder? placementBuilder,
-
-    /// [onTapEvent] will be call on every event preformed by the user
-    final EventActionCallback? onTapEvent,
-  }) =>
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          fullscreenDialog: true,
-          builder: (context) => Scaffold(
-            body: EasyChatGameApp(
-              title: title,
-              placementBuilder: placementBuilder,
-              onTapEvent: onTapEvent,
-              levels: levels,
-            ),
-          ),
-        ),
-      );
 }

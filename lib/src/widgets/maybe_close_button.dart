@@ -8,8 +8,14 @@ class MaybeCloseButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final parentRoute = ModalRoute.of(this.context);
     final canPop = parentRoute?.canPop ?? false;
+    final bool useCloseButton =
+        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
     return canPop
-        ? CloseButton(onPressed: Navigator.of(this.context).pop)
+        ? useCloseButton
+            ? CloseButton(onPressed: onDismiss)
+            : BackButton(onPressed: onDismiss)
         : const SizedBox();
   }
+
+  void onDismiss() => Navigator.of(context).pop();
 }

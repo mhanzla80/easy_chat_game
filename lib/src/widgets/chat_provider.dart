@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:easy_chat_game/src/easy_chat_game_controller.dart';
 import 'package:easy_chat_game/src/models/chat_level.dart';
 import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/prefs.dart';
@@ -97,6 +98,12 @@ class ChatProvider extends ChangeNotifier {
   void _showEndDialog(BuildContext context, bool isSuccess) async {
     await Future.delayed(const Duration(seconds: 2));
     if (context.mounted) await LevelEndDialog.show(context, isSuccess);
-    if (context.mounted) Navigator.of(context).pop(isSuccess);
+    if (context.mounted) {
+      final isPopped = await Navigator.of(context).maybePop(isSuccess);
+      if (isPopped == false && context.mounted) {
+        Navigator.maybePop(
+            EasyChatGameController.of(context).parentContext, isSuccess);
+      }
+    }
   }
 }
