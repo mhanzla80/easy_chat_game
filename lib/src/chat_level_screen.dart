@@ -35,10 +35,14 @@ class _ChatLevelScreenState extends State<ChatLevelScreen> {
                     children: [
                       MaybeCloseButton(
                           EasyChatGameController.of(context).context),
-                      SizedBox(width: 20),
-                      Text('Chat Stories',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30)),
+                      Text(
+                        'Chat Stories',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 ),
