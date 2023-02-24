@@ -37,7 +37,17 @@ class _MyHomePageState extends State<MyHomePage> {
         levels: ChatData.allLevels(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (_) => Scaffold(
+                        body: EasyChatGameApp(
+                      title: 'Teacher Chat',
+                      levels: ChatData.allLevels(),
+                    ))),
+          );
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
