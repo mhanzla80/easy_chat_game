@@ -19,12 +19,17 @@ There are two ways to use Easy Wallpaper.
 ### 1: Stand-Alone App mode
 
 ```dart
-EasyPrankCallApp.launchApp(
-  title: 'Scary Teacher Prank',
-  levels: ChatData.allLevels(),
-  placementBuilder: _addPlacements,
-  onTapEvent: _onTapEvent,
-)
+void onLaunch() async {
+  final result = await Navigator.of(context).push(
+    MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => EasyChatGameApp(
+          title: 'Teacher Chat',
+          levels: ChatData.allLevels(),
+        )),
+  );
+  if (result == false) onLaunch();
+}
 ```
 
 ### 2: Add to Widget-Tree

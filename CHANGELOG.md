@@ -1,3 +1,6 @@
+## 1.1.0
+* Adds functionality to load 1 level
+
 ## 1.0.4
 * Adds close button
 * Updates dependencies
