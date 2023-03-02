@@ -40,10 +40,8 @@ class ChatListWidget extends StatelessWidget {
           itemCount: model.messages.length,
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            final brightness = Theme.of(context).brightness;
-            bool isDarkMode = brightness == Brightness.dark;
             return MessageWidget(
-                _isSender(index), level, model.messages[index], isDarkMode);
+                _isSender(index), level, model.messages[index]);
           },
         );
       },

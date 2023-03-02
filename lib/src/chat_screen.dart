@@ -18,7 +18,6 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).secondaryHeaderColor,
       appBar: ChatHeaderWidget(level.botName, level.botImg),
       body: ListenableProvider(
         create: (context) => ChatProvider(level),
@@ -37,16 +36,20 @@ class ChatScreen extends StatelessWidget {
             Expanded(child: ChatListWidget(level)),
             const TypingPanel(),
             const ChatOptionsPanel(),
+            if (controller.placementBuilder != null)
+              SafeArea(
+                top: false,
+                left: false,
+                right: false,
+                child: Container(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  alignment: Alignment.bottomCenter,
+                  child: controller.placementBuilder!
+                      .call(context, ChatGamePlacement.optionPanel),
+                ),
+              ),
           ],
         ),
-        if (controller.placementBuilder != null)
-          SafeArea(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: controller.placementBuilder!
-                  .call(context, ChatGamePlacement.optionPanel),
-            ),
-          ),
         const ControlLevelTitlePanel(),
       ],
     );

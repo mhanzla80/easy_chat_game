@@ -15,7 +15,6 @@ class ChatAvatar extends StatelessWidget {
       decoration: BoxDecoration(
         image:
             DecorationImage(fit: BoxFit.cover, image: ExactAssetImage(imgSrc)),
-        border: Border.all(color: Colors.white12, width: 1),
         borderRadius: const BorderRadius.all(Radius.circular(100)),
       ),
     );

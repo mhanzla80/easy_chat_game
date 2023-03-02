@@ -35,7 +35,7 @@ class TypingPanel extends StatelessWidget {
           children: <Widget>[
             Text("$senderName is typing "),
             SpinKitThreeBounce(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).indicatorColor,
               size: 20.0,
             ),
           ],
