@@ -1,3 +1,7 @@
+## 1.1.1
+* Fixes dark mode issues
+* Fixes bottom banner issues
+
 ## 1.1.0
 * Adds functionality to load 1 level
 
