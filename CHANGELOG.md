@@ -1,3 +1,6 @@
+## 1.1.2
+* Adds level analyser
+
 ## 1.1.1
 * Fixes dark mode issues
 * Fixes bottom banner issues
