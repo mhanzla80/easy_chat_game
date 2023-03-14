@@ -5,6 +5,7 @@ import 'package:easy_chat_game/src/models/chat_level.dart';
 import 'package:easy_chat_game/src/utilities/my_audio_player.dart';
 import 'package:easy_chat_game/src/utilities/prefs.dart';
 import 'package:easy_chat_game/src/utilities/size_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class EasyChatGameApp extends StatelessWidget {
@@ -20,10 +21,14 @@ class EasyChatGameApp extends StatelessWidget {
   /// [onTapEvent] will be call on every event preformed by the user
   final EventActionCallback? onTapEvent;
 
+  /// This will analyse your levels in debug mode only and print debug log if there is any issues in keys
+  final bool checkLevels;
+
   const EasyChatGameApp({
     Key? key,
     required this.title,
     required this.levels,
+    this.checkLevels = true,
     this.onTapEvent,
     this.placementBuilder,
   }) : super(key: key);
@@ -31,6 +36,13 @@ class EasyChatGameApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    if (checkLevels && kDebugMode) {
+      _logMessage(
+          '---------------- LEVEL KEYS ANALYSIS BEGINS ----------------');
+      _printUnreachableKeys(levels);
+      _logMessage('---------------- LEVEL KEYS ANALYSIS ENDS ----------------');
+    }
 
     final child = EasyChatGameController(
       title: title,
@@ -74,6 +86,48 @@ class EasyChatGameApp extends StatelessWidget {
   Future<void> _initialize() async {
     await MyAudioPlayer.instance.init();
     await Prefs.instance.init();
+  }
+
+  static void _printUnreachableKeys(final List<ChatLevel> levels) {
+    for (final level in levels) {
+      final chatList = level.chatList;
+      final allKeys = chatList.keys.toList();
+
+      _printUnReachableKeys(
+          level.willSenderInitiateChat ? ChatLevel.botKey : ChatLevel.userKey,
+          chatList,
+          level,
+          allKeys);
+    }
+  }
+
+  static void _logMessage(String message) {
+    if (kDebugMode) print(message);
+  }
+
+  static void _printUnReachableKeys(
+      String root,
+      Map<String, List<String>> chatList,
+      ChatLevel level,
+      List<String> allKeys) {
+    if (level.isSuccessMessage(root)) {
+      // print('success message hit: $root');
+      return;
+    } else if (level.isErrorMessage(root)) {
+      // print('error message hit: $root');
+      return;
+    } else if (!allKeys.contains(root)) {
+      _logMessage(
+          '---------------- Key does not exist: $root, level name: ${level.levelName} ----------------');
+      return;
+    }
+
+    final list = chatList[root];
+    if (list == null) return;
+
+    for (int i = 0; i < list.length; i++) {
+      _printUnReachableKeys(list[i], chatList, level, allKeys);
+    }
   }
 
   Route _generatePage(child) => MaterialPageRoute(builder: (_) => child);
